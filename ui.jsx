@@ -95,6 +95,8 @@ var Card = React.createClass({
                 avatar="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
                 style={{
                   margin: '1%',
+                  width: '350px',
+                  overflow: 'hidden',
                   float: 'left'
                 }}/>
               <MaterialUI.CardHeader
@@ -103,6 +105,8 @@ var Card = React.createClass({
                 avatar={item.owner.avatar_url}
                 style={{
                   margin: '1%',
+                  width: '200px',
+                  overflow: 'hidden',
                   float: 'left'
                 }}/>
                <MaterialUI.CardHeader
@@ -111,6 +115,8 @@ var Card = React.createClass({
                 avatar="http://www.wpclipart.com/cartoon/stars/star_angry.png"
                 style={{
                   margin: '1%',
+                  width: '200px',
+                  overflow: 'hidden',
                   float: 'left'
                 }}/>
              <MaterialUI.CardText
