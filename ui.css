@@ -1,1 +1,14 @@
 /* CSS declarations go here */
+*{
+  padding: 0;
+  margin: 0;
+  transition: 1s ease-in-out;
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.searchResults{
+  color: green;
+  height: 200px;
+}
