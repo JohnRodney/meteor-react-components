@@ -14,7 +14,6 @@ var App = React.createClass({
   },
 
   handleClick: function(event) {
-    console.log(event);
     this._queryGitHub();
   },
 
@@ -24,8 +23,8 @@ var App = React.createClass({
     };
   },
 
-  _handleTextFieldChange: function(hey){
-    searchTerm = $(hey.currentTarget).val();
+  _handleTextFieldChange: function(e){
+    searchTerm = $(e.currentTarget).val();
   },
 
   _queryGitHub: function(){
@@ -42,11 +41,11 @@ var App = React.createClass({
           <MaterialUI.AppBar title='Git Search' iconClassNameRight="muidocs-icon-navigation-expand-more"/>
             <div onClick={this.handleClick} style={{float: 'left'}}>
               <MaterialUI.RaisedButton
-               style={{margin: '15px'}}
+               style={{margin: '30px'}}
                label="Search"></MaterialUI.RaisedButton>
             </div>
             <MaterialUI.TextField
-                style={{margin: '15px'}}
+                style={{margin: '30px'}}
                 onEnterKeyDown ={this.handleClick}
                 onChange={this._handleTextFieldChange}
                 hintText="Hint Text" />
