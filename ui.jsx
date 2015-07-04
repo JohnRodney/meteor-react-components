@@ -62,7 +62,7 @@ var App = React.createClass({
                 onEnterKeyDown ={this.handleClick}
                 onChange={this._handleTextFieldChange}
                 hintText="Github Search" />
-          <Card />
+          <Results />
         </div>
     );
   }
@@ -78,7 +78,7 @@ function sortByStars(repos){
   return _.sortBy(repos, function(o) { return o.stargazers_count }).reverse();
 }
 
-var Card = React.createClass({
+var Results = React.createClass({
   render: function(){
     var searchNodes = searchResults.map(function (item) {
       console.log(item);
@@ -87,7 +87,8 @@ var Card = React.createClass({
             <div className='git-card'>
               <MaterialUI.Card
               style={{
-                backgroundColor: 'transparent'
+                backgroundColor: 'transparent',
+                boxShadow: '1px 1px 3px black'
               }}>
                 <MaterialUI.CardHeader
                   title="Repo"

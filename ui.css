@@ -7,6 +7,7 @@
 
 body{
   font-family: 'Roboto', sans-serif;
+  background-color: #efefef;
 }
 .searchResults{
   color: green;
@@ -17,13 +18,14 @@ body{
   color: black;
   text-decoration: none !important;
 }
+
 .git-card{
   border-left: 20px solid #00bcd4;
   border-top: 1px solid #dfdfdf;
   border-bottom: 1px solid #dfdfdf;
-  margin: 5px;
+  margin: 0 5px 3px 5px;
 }
 .git-card:hover{
-  background-color: #efefef;
+  background-color: white;
   border-left: 20px solid #FFCC80;
 }
