@@ -1,7 +1,4 @@
 var ThemeManager = new MaterialUI.Styles.ThemeManager();
-var labelMenuItems = [
-   { payload: '1', text: 'REPOS', data: '', icon: 'home' },
-];
 var searchTerm;
 var searchResults = [];
 var App = React.createClass({
@@ -32,7 +29,6 @@ var App = React.createClass({
   },
 
   _queryGitHub: function(){
-    labelMenuItems = [{ payload: '1', text: 'REPOS', data: '', icon: 'home' },];
 
     $.get('https://api.github.com/search/repositories?q='+ searchTerm +'+language:javascript&order=asc', function(data){
       searchResults = sortByStars(data.items);
@@ -54,9 +50,6 @@ var App = React.createClass({
                 onEnterKeyDown ={this.handleClick}
                 onChange={this._handleTextFieldChange}
                 hintText="Hint Text" />
-            <MaterialUI.Menu
-             className="searchResults"
-             menuItems={labelMenuItems} autoWidth={false}/>
           <Card />
         </div>
     );
@@ -72,13 +65,7 @@ if (Meteor.isClient) {
 function sortByStars(repos){
   return _.sortBy(repos, function(o) { return o.stargazers_count }).reverse();
 }
-  // items.forEach(function(item, i){
-      //   console.log(item);
-      //   var text = item.name.toUpperCase() + "  -  " + item.owner.login + "  -  " + item.stargazers_count; //+ "<img src=\"" + item.user.avatar_url "\">";
-      //   labelMenuItems.push({
-      //     payload: i+1, text: text, data: item.description, icon: 'home'
-      //   });
-      // });
+
 var Card = React.createClass({
   render: function(){
     var searchNodes = searchResults.map(function (item) {
@@ -91,7 +78,8 @@ var Card = React.createClass({
               width: '98%'
             }}>
               <MaterialUI.CardHeader
-                title={item.name}
+                title="Repo"
+                subtitle={item.name}
                 avatar="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
                 style={{
                   margin: '1%',
@@ -108,16 +96,17 @@ var Card = React.createClass({
                   width: '30%'
                 }}/>
               <MaterialUI.CardHeader
-                title={item.owner.login}
+                title="Owner"
+                subtitle={item.owner.login}
                 avatar={item.owner.avatar_url}
                 style={{
                   margin: '1%',
                   width: '30%',
                   float: 'left'
                 }}/>
-
               <MaterialUI.CardText
                 style={{
+                  margin: '1%',
                   clear: 'both',
                   fontSize: '12px'
                 }}>
