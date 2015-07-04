@@ -84,45 +84,47 @@ var Card = React.createClass({
     var searchNodes = searchResults.map(function (item) {
       console.log(item);
       return (
-          <MaterialUI.Card
-          style={{
-            margin: '1%',
-            width: '98%'
-          }}>
-            <MaterialUI.CardHeader
-              title={item.name.toUpperCase()}
-              avatar="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
-              style={{
-                margin: '1%',
-                float: 'left',
-                width: '30%'
-              }}/>
-            <MaterialUI.CardHeader
-              title="Stars"
-              subtitle={item.stargazers_count}
-              avatar="http://www.wpclipart.com/cartoon/stars/star_angry.png"
-              style={{
-                margin: '1%',
-                float: 'right',
-                width: '30%'
-              }}/>
-            <MaterialUI.CardHeader
-              title={item.owner.login}
-              avatar={item.owner.avatar_url}
-              style={{
-                margin: '1%',
-                width: '30%',
-                float: 'left'
-              }}/>
+          <a className='no-underline' href={item.clone_url}>
+            <MaterialUI.Card
+            style={{
+              margin: '1%',
+              width: '98%'
+            }}>
+              <MaterialUI.CardHeader
+                title={item.name}
+                avatar="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
+                style={{
+                  margin: '1%',
+                  float: 'left',
+                  width: '30%'
+                }}/>
+              <MaterialUI.CardHeader
+                title="Stars"
+                subtitle={item.stargazers_count}
+                avatar="http://www.wpclipart.com/cartoon/stars/star_angry.png"
+                style={{
+                  margin: '1%',
+                  float: 'right',
+                  width: '30%'
+                }}/>
+              <MaterialUI.CardHeader
+                title={item.owner.login}
+                avatar={item.owner.avatar_url}
+                style={{
+                  margin: '1%',
+                  width: '30%',
+                  float: 'left'
+                }}/>
 
-            <MaterialUI.CardText
-              style={{
-                clear: 'both',
-                fontSize: '12px'
-              }}>
-              {item.description}
-            </MaterialUI.CardText>
-          </MaterialUI.Card>
+              <MaterialUI.CardText
+                style={{
+                  clear: 'both',
+                  fontSize: '12px'
+                }}>
+                {item.description}
+              </MaterialUI.CardText>
+            </MaterialUI.Card>
+          </a>
       );
     });
     return (
