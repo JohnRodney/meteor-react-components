@@ -7,7 +7,7 @@
 
 body{
   font-family: 'Roboto', sans-serif;
-  background-color: #efefef;
+  background-color: white;
 }
 .searchResults{
   color: green;
@@ -26,6 +26,6 @@ body{
   margin: 0 5px 3px 5px;
 }
 .git-card:hover{
-  background-color: white;
+  background-color: #afefff;
   border-left: 20px solid #FFCC80;
 }
