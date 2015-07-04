@@ -1,7 +1,20 @@
+var Formaldehyde;
+if(Meteor.isClient){
+  console.log(Meteor.Poetic.Formaldehyde);
+  Formaldehyde = Meteor.Poetic.Formaldehyde;
+}
 var ThemeManager = new MaterialUI.Styles.ThemeManager();
 var searchTerm;
 var searchResults = [];
 var App = React.createClass({
+
+  componentDidMount: function(){
+    var that = this;
+    Formaldehyde.register('q', function(value){
+      searchTerm = value;
+      that._queryGitHub();
+    });
+  },
 
   getInitialState: function() {
       return {
@@ -14,7 +27,7 @@ var App = React.createClass({
   },
 
   handleClick: function(event) {
-    this._queryGitHub();
+    Formaldehyde.set('q', searchTerm);
   },
 
   getChildContext: function() {
@@ -28,11 +41,11 @@ var App = React.createClass({
   },
 
   _queryGitHub: function(){
-
+    var that = this;
     $.get('https://api.github.com/search/repositories?q='+ searchTerm +'+language:javascript&order=asc', function(data){
       searchResults = sortByStars(data.items);
+      that.forceUpdate();
     });
-    this.forceUpdate();
   },
 
   render: function() {
@@ -82,17 +95,7 @@ var Card = React.createClass({
                 avatar="https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png"
                 style={{
                   margin: '1%',
-                  float: 'left',
-                  width: '30%'
-                }}/>
-              <MaterialUI.CardHeader
-                title="Stars"
-                subtitle={item.stargazers_count}
-                avatar="http://www.wpclipart.com/cartoon/stars/star_angry.png"
-                style={{
-                  margin: '1%',
-                  float: 'right',
-                  width: '30%'
+                  float: 'left'
                 }}/>
               <MaterialUI.CardHeader
                 title="Owner"
@@ -100,10 +103,17 @@ var Card = React.createClass({
                 avatar={item.owner.avatar_url}
                 style={{
                   margin: '1%',
-                  width: '30%',
                   float: 'left'
                 }}/>
-              <MaterialUI.CardText
+               <MaterialUI.CardHeader
+                title="Stars"
+                subtitle={item.stargazers_count}
+                avatar="http://www.wpclipart.com/cartoon/stars/star_angry.png"
+                style={{
+                  margin: '1%',
+                  float: 'left'
+                }}/>
+             <MaterialUI.CardText
                 style={{
                   margin: '1%',
                   clear: 'both',
