@@ -61,7 +61,7 @@ var App = React.createClass({
                 style={{margin: '30px'}}
                 onEnterKeyDown ={this.handleClick}
                 onChange={this._handleTextFieldChange}
-                hintText="Hint Text" />
+                hintText="Github Search" />
           <Card />
         </div>
     );
