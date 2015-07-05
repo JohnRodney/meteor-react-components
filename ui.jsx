@@ -2,7 +2,7 @@ var Formaldehyde,
     ThemeManager = new MaterialUI.Styles.ThemeManager(),
     searchTerm,
     searchResults = [],
-    searchType = 'stack';
+    searchType = 'git';
 
 var menuItems = [
    { payload: '1', text: 'Github' },
@@ -25,6 +25,10 @@ var App = React.createClass({
       searchTerm = value;
       that._queryGitHub();
     });
+    Formaldehyde.register('t', function(value){
+      searchType = value;
+      that._queryGitHub();
+    });
   },
 
   getInitialState: function() {
@@ -39,6 +43,7 @@ var App = React.createClass({
 
   handleClick: function(event) {
     Formaldehyde.set('q', searchTerm);
+    Formaldehyde.set('t', searchType);
   },
 
   getChildContext: function() {
@@ -61,7 +66,7 @@ var App = React.createClass({
   _queryGitHub: function(){
     var that = this;
     var url;
-    console.log(searchType);
+    console.log(searchType, 'checking');
     var stack = "https://api.stackexchange.com/2.2/search/excerpts?body="+searchTerm+"&site=stackoverflow";
     var git = 'https://api.github.com/search/repositories?q='+ searchTerm +'&order=asc';
     if(searchType === "stack"){
@@ -77,6 +82,9 @@ var App = React.createClass({
       }
       that.forceUpdate();
     });
+  },
+  handleEnter: function(){
+    this.handleClick();
   },
 
   render: function() {
@@ -97,7 +105,7 @@ var App = React.createClass({
                 <MaterialUI.ToolbarSeparator/>
                 <MaterialUI.TextField
                   style={{marginLeft: '10px'}}
-                  onEnterKeyDown ={this.handleClick}
+                  onEnterKeyDown ={this.handleEnter}
                   onChange={this._changeSearchType}
                   hintText="Enter Github or Stackoverflow" />
               </MaterialUI.ToolbarGroup>
