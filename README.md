@@ -2,4 +2,7 @@
 Boiler plate of getting react components to render clientside in Meteor
 
 #Git Clone 
-  and go
+  `git clone https://github.com/JohnRodney/meteor-react-components.git`
+  `cd meteor-react-components`
+  `meteor`
+  `say Have fun with meteor and react.`
